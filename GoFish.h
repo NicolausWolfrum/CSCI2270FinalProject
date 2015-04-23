@@ -13,6 +13,8 @@
 struct card{
 	int number;
 	std::string suit;
+	card* next = NULL;
+	card* prev = NULL;
 
 };
 
@@ -24,9 +26,17 @@ public:
 	virtual ~GoFish();
 	void addCard(std::string, int);
 	void shuffleDeck();
+	void dealCards();
+	void revealCards();
+	bool cardsShuffled = false;
+	bool cardsDealt = false;
+	bool cardsRevealed = false;
+	void searchCards(std::string, int);
 
 private:
 	std::vector <card*> deck;
+	card* Player1Root;
+	card* Player2Root;
 };
 
 #endif // GOFISH_H
