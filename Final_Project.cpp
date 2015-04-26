@@ -8,7 +8,7 @@
 #include<fstream>
 #include<sstream>
 #include "GoFish.h"
-#include <time.h> 
+#include <time.h>
 
 
 //Function Prototypes
@@ -78,6 +78,13 @@ int main(){
 				getline(std::cin, temp);
 				getline(std::cin, search);
 				Obj->searchCards("Player 1", atoi(search.c_str()));
+				/*
+				card *Player2Root = Obj->getPlayerRoot("Player 2");
+				int newVal = Obj->player2Max(Player2Root);
+				std::cout << "Player 2 going" << std::endl;
+				//add delay of a few seconds in here
+				Obj->searchCards("Player 2", newVal);
+				*/
 			}
 			printMenu();
 		}

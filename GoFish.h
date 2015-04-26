@@ -31,12 +31,17 @@ public:
 	bool cardsShuffled = false;
 	bool cardsDealt = false;
 	bool cardsRevealed = false;
-	void searchCards(std::string, int);
+	void searchCards(std::string Player, int val);
+	void removeCards(std::string Player, int val);
+	void addCardHand(std::string Player, card *tempx);
+	int player2Max(card *player2Root);
+	card *getPlayerRoot(std::string player);
+
 
 private:
 	std::vector <card*> deck;
-	card* Player1Root;
-	card* Player2Root;
+	card* Player1Root = NULL;
+	card* Player2Root = NULL;
 };
 
 #endif // GOFISH_H
