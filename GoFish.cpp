@@ -184,6 +184,7 @@ void GoFish::searchCards(std::string Player, int val){
 			if (head->number == val){
 				cardFound1 = true;
 				removeCards("Player 2", val);
+				std::cout << "Card/cards found." << std::endl;
 				break;
 			}
 			head = head->next;
@@ -193,7 +194,17 @@ void GoFish::searchCards(std::string Player, int val){
 			card* temp = deck.back();
 			deck.pop_back();
 			addCardHand("Player 1", temp);
-			isEmpty();
+			if (isEmpty()){
+				playerMax("Player 1", Player1Root);
+				playerMax("Player 2", Player2Root);
+
+				if (count1 > count2){
+					std::cout << "Player 1 won with " << count1 << "books." << std::endl;
+				}
+				if (count2 > count1){
+					std::cout << "Player 2 won with " << count2 << "books." << std::endl;
+				}
+			}
 		}
 	}
 	else{ //Player = Player 2
@@ -212,7 +223,17 @@ void GoFish::searchCards(std::string Player, int val){
 			deck.pop_back();
 			addCardHand("Player 2", temp);
 			std::cout << "Player does not have card, drawing card from deck" << std::endl;
-			isEmpty();
+			if (isEmpty()){
+				playerMax("Player 1", Player1Root);
+				playerMax("Player 2", Player2Root);
+
+				if (count1 > count2){
+					std::cout << "Player 1 won with " << count1 << "books." << std::endl;
+				}
+				if (count2 > count1){
+					std::cout << "Player 2 won with " << count2 << "books." << std::endl;
+				}
+			}
 		}
 	}
 
@@ -224,8 +245,7 @@ void GoFish::removeCards(std::string Player, int val){ //removes cards and gives
 	if (Player == "Player 1"){ //removing from player 1 and adding to player 2
 		card *current = Player1Root;
 		while (current != NULL){
-			if (current->number = val){
-
+			if (current->number == val){
 				if (current->prev == NULL){ //head is the value to delete
 					card* temp = new card;
 					//set each individual item
@@ -269,9 +289,6 @@ void GoFish::removeCards(std::string Player, int val){ //removes cards and gives
 				current = current->next;
 			}
 		}
-
-
-
 	}
 	else{ //Removing from player 2 and adding to player 1
 		//card* temp = new card;
