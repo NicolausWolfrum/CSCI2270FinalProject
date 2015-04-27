@@ -235,8 +235,8 @@ void GoFish::removeCards(std::string Player, int val){ //removes cards and gives
 					temp->prev = NULL;
 					addCardHand("Player 2", temp);
 					Player1Root = current->next;
-					current->next->prev = NULL;
 					current = current->next;
+					current->next->prev = NULL;
 				}
 				else if (current->next == NULL){ //tail is value to delete
 					card* temp = new card;
@@ -246,9 +246,9 @@ void GoFish::removeCards(std::string Player, int val){ //removes cards and gives
 					temp->next = NULL;
 					temp->prev = NULL;
 					addCardHand("Player 2", temp);
-
 					current->prev->next = NULL;
-					current = current->next;
+					current = NULL;
+
 				}
 				else{ //value to delete is in middle of list
 					card* temp = new card;
@@ -289,8 +289,9 @@ void GoFish::removeCards(std::string Player, int val){ //removes cards and gives
 					temp->prev = NULL;
 					addCardHand("Player 1", temp);
 					Player2Root = current->next;
-					current->next->prev = NULL;
 					current = current->next;
+
+					current->next->prev = NULL;
 				}
 				else if (current->next == NULL){ //tail is value to delete
 
@@ -301,9 +302,8 @@ void GoFish::removeCards(std::string Player, int val){ //removes cards and gives
 					temp->next = NULL;
 					temp->prev = NULL;
 					addCardHand("Player 1", temp);
-
 					current->prev->next = NULL;
-					current = current->next;
+					current = NULL;
 
 				}
 				else{ //value to delete is in middle of list
@@ -394,7 +394,7 @@ void GoFish::addCardHand(std::string Player, card *tempx){
 
 
 int GoFish::playerMax(std::string player, card *PlayerRoot){
-	
+
 	card *head = new card;
 
 
