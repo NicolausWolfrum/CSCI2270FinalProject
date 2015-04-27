@@ -31,11 +31,14 @@ public:
 	bool cardsShuffled = false;
 	bool cardsDealt = false;
 	bool cardsRevealed = false;
+	int count1 = 0;
+	int count2 = 0;
 	void searchCards(std::string Player, int val);
 	void removeCards(std::string Player, int val);
 	void addCardHand(std::string Player, card *tempx);
-	int player2Max(card *player2Root);
+	int playerMax(std::string player, card *player2Root);
 	card *getPlayerRoot(std::string player);
+	bool isEmpty();
 
 
 private:
