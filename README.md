@@ -6,22 +6,19 @@ Project Summary: Our project was to write a program for a "Go Fish" game. Using 
 How is Go Fish Played?
 
 	Cards must be shuffled before they are dealt to the players.
-
 	Since we are only going to be using two players, each player will be dealt 7 cards.
-
-	Dealer deals cards clockwise, face down (a function to reveal cards). Remainder of 			pack is placed in center deck for drawing.
-
-	Goal is to get most books/sets of four (so need to count when we have four of a 			kind) Will need to subtract if user loses a card that was in a book.
-
-	When a asking/fishing for a card, the user must have that type of card in his/her 			hand. So need to check if that card is in the hand.
-
+	Dealer deals cards clockwise, face down (a function to reveal cards). Remainder of 
+	pack is placed in center deck for drawing.
+	Goal is to get most books/sets of four (so need to count when we have four of a 			
+	kind) Will need to subtract if user loses a card that was in a book.
+	When a asking/fishing for a card, the user must have that type of card in his/her 			
+	hand. So need to check if that card is in the hand.
 	If player asked doesn’t have the requested card, cout<<“GO FISH”<<endl; and the user must
-		draw a card from the deck.
-	
-	If the card is found, the user can ask the same player or another player for more cards, 		essentially, his turn continues. If he makes a catch, the card must be revealed
-
-	Once a player gains the fourth card of a book, the book is revealed face up and can no 			longer be accessed.
-
+	draw a card from the deck.	
+	If the card is found, the user can ask the same player or another player for more cards, 		
+	essentially, his turn continues. If he makes a catch, the card must be revealed
+	Once a player gains the fourth card of a book, the book is revealed face up and can no 			
+	longer be accessed.
 	If a catch is not made, the turn goes to the player to the left.
 	
 
@@ -40,8 +37,8 @@ Contributors: N/A
 
 Open Issues/Bugs:
 
-Still having trouble with the "Go Fish" part. Player 1 can search for cards from Player 2, take cards from player 2, add to their hand from deck, etc. but the reverse order 
-does not seem to work for some reason. Have worked for many hours with no solution found. Other than this, everything is working to our knowledge.
+	No consistent issues known of. 
+		
 
 
 
