@@ -26,6 +26,9 @@ How is Go Fish Played?
 	
 
 How to Run:
+Compile/Build an run the program. Once running, you need to go through the steps. It will ask you to shuffle the cards, deal the cards,
+and reveal your cards. At this point, you are able to "Go Fish". Then it will prompt you for what card you are looking for, and you should enter an integer between 
+1 and 13. The computer will automatically go after this. The game is supposed to run until all cards are gone, or until you press 5 (the option to quit).
 
 Dependencies: Uses basic/standard c++ libraries. No third party content needed.
 
@@ -36,6 +39,9 @@ Group Members: Elliot Benson & Nic Wolfrum
 Contributors: N/A
 
 Open Issues/Bugs:
+
+Still having trouble with the "Go Fish" part. Player 1 can search for cards from Player 2, take cards from player 2, add to their hand from deck, etc. but the reverse order 
+does not seem to work for some reason. Have worked for many hours with no solution found. Other than this, everything is working to our knowledge.
 
 
 
