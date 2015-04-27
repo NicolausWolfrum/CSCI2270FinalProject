@@ -28,17 +28,19 @@ public:
 	void shuffleDeck();
 	void dealCards();
 	void revealCards();
-	bool cardsShuffled = false;
-	bool cardsDealt = false;
-	bool cardsRevealed = false;
-	int count1 = 0;
-	int count2 = 0;
 	void searchCards(std::string Player, int val);
 	void removeCards(std::string Player, int val);
 	void addCardHand(std::string Player, card *tempx);
+	void removeBook(std::string Player, int val);
 	int playerMax(std::string player, card *player2Root);
 	card *getPlayerRoot(std::string player);
 	bool isEmpty();
+	bool cardsShuffled = false;
+	bool cardsDealt = false;
+	bool cardsRevealed = false;
+	bool gameOver = false;
+	int count1 = 0;
+	int count2 = 0;
 
 
 private:

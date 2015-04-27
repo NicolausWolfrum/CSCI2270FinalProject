@@ -121,34 +121,34 @@ void GoFish::revealCards()
 		}
 
 		temp = temp->next;
-	}
-	temp = Player2Root; //only want to print out Player 1's cards
-	std::cout << "Computer's Cards: " << std::endl;
-	while (temp != NULL)
-	{
-		if (temp->number == 1)
-		{
-			std::cout << "Ace of " << temp->suit << std::endl;
-		}
-		else if (temp->number == 11)
-		{
-			std::cout << "Jack of " << temp->suit << std::endl;
-		}
-		else if (temp->number == 12)
-		{
-			std::cout << "Queen of " << temp->suit << std::endl;
-		}
-		else if (temp->number == 13)
-		{
-			std::cout << "King of " << temp->suit << std::endl;
-		}
-		else
-		{
-			std::cout << temp->number << " of " << temp->suit << std::endl;
-		}
+	}/*
+	 temp = Player2Root; //only want to print out Player 1's cards
+	 std::cout << "Computer's Cards: " << std::endl;
+	 while (temp != NULL)
+	 {
+	 if (temp->number == 1)
+	 {
+	 std::cout << "Ace of " << temp->suit << std::endl;
+	 }
+	 else if (temp->number == 11)
+	 {
+	 std::cout << "Jack of " << temp->suit << std::endl;
+	 }
+	 else if (temp->number == 12)
+	 {
+	 std::cout << "Queen of " << temp->suit << std::endl;
+	 }
+	 else if (temp->number == 13)
+	 {
+	 std::cout << "King of " << temp->suit << std::endl;
+	 }
+	 else
+	 {
+	 std::cout << temp->number << " of " << temp->suit << std::endl;
+	 }
 
-		temp = temp->next;
-	}
+	 temp = temp->next;
+	 }*/
 	cardsRevealed = true;
 }
 /*This function is to search the opposing player's linked list for the desired value card and, if found, add the found
@@ -190,22 +190,26 @@ void GoFish::searchCards(std::string Player, int val){
 			head = head->next;
 		}
 		if (cardFound1 == false){
-			std::cout << "Player does not have card, drawing card from deck" << std::endl;
+			std::cout << "Player 2 does not have that card. Drawing card from deck" << std::endl;
 			card* temp = deck.back();
 			deck.pop_back();
 			addCardHand("Player 1", temp);
+			std::cout << "You drew a " << temp->number << "!" << std::endl;
 			if (isEmpty()){
 				playerMax("Player 1", Player1Root);
 				playerMax("Player 2", Player2Root);
 
 				if (count1 > count2){
-					std::cout << "Player 1 won with " << count1 << "books." << std::endl;
+					std::cout << "Player 1 won with " << count1 << " books." << std::endl;
 				}
 				if (count2 > count1){
-					std::cout << "Player 2 won with " << count2 << "books." << std::endl;
+					std::cout << "Player 2 won with " << count2 << " books." << std::endl;
 				}
+				gameOver = true;
 			}
 		}
+		playerMax("Player 1", Player1Root);
+
 	}
 	else{ //Player = Player 2
 		card *current = Player1Root;
@@ -222,19 +226,22 @@ void GoFish::searchCards(std::string Player, int val){
 			card* temp = deck.back();
 			deck.pop_back();
 			addCardHand("Player 2", temp);
-			std::cout << "Player does not have card, drawing card from deck" << std::endl;
+			std::cout << "Player 1 does not have that card. Drawing card from deck" << std::endl;
 			if (isEmpty()){
 				playerMax("Player 1", Player1Root);
 				playerMax("Player 2", Player2Root);
 
 				if (count1 > count2){
-					std::cout << "Player 1 won with " << count1 << "books." << std::endl;
+					std::cout << "Player 1 won with " << count1 << " books." << std::endl;
 				}
 				if (count2 > count1){
-					std::cout << "Player 2 won with " << count2 << "books." << std::endl;
+					std::cout << "Player 2 won with " << count2 << " books." << std::endl;
 				}
+				gameOver = true;
 			}
 		}
+		playerMax("Player 2", Player2Root);
+
 	}
 
 
@@ -507,12 +514,16 @@ int GoFish::playerMax(std::string player, card *PlayerRoot){
 	}
 
 	if (maxElement == 4){
-		removeCards(player, cardName);
+		removeBook(player, cardName);
 		if (player == "Player 1"){
 			count1++;
+			std::cout << "Player one now has " << count1 << " books!" << std::endl;
+
 		}
 		if (player == "Player 2"){
 			count2++;
+			std::cout << "Player two now has " << count2 << " books!" << std::endl;
+
 		}
 	}
 
@@ -539,3 +550,73 @@ bool GoFish::isEmpty(){
 		return true;
 	}
 }
+void GoFish::removeBook(std::string Player, int val)
+{
+	if (Player == "Player 1"){ //removing from player 1 and adding to player 2
+		card *current = Player1Root;
+		while (current != NULL){
+			if (current->number == val){
+				if (current->prev == NULL){ //head is the value to delete
+
+					Player1Root = current->next;
+					current = current->next;
+					current->next->prev = NULL;
+				}
+				else if (current->next == NULL){ //tail is value to delete
+
+					current->prev->next = NULL;
+					current = NULL;
+
+				}
+				else{ //value to delete is in middle of list
+
+					current->prev->next = current->next;
+					current->next->prev = current->prev;
+					current = current->next;
+				}
+			}
+			else
+			{
+				current = current->next;
+			}
+		}
+	}
+	else{ //Removing from player 2 and adding to player 1
+		//card* temp = new card;
+		card* current = Player2Root;
+		while (current != NULL){
+			if (current->number == val){
+
+				if (current->prev == NULL){ //head is the value to delete
+
+					Player2Root = current->next;
+					current = current->next;
+
+					current->next->prev = NULL;
+				}
+				else if (current->next == NULL){ //tail is value to delete
+
+					current->prev->next = NULL;
+					current = NULL;
+
+				}
+				else{ //value to delete is in middle of list
+
+
+					current->prev->next = current->next;
+					current->next->prev = current->prev;
+					//need to put add function here and at all other spots
+					//delete current;
+					current = current->next;
+				}
+			}
+			else{
+				current = current->next;
+			}
+		}
+
+
+	}
+
+}
+

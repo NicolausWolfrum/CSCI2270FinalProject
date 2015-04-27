@@ -78,14 +78,25 @@ int main(){
 				getline(std::cin, temp);
 				getline(std::cin, search);
 				Obj->searchCards("Player 1", atoi(search.c_str()));
-				card *Player2Root = Obj->getPlayerRoot("Player 2");
-				int newVal = Obj->playerMax("Player 2", Player2Root);
-				std::cout << "Player 2 going" << std::endl;
-				std::cout << "Player 2 asking if you have any " << newVal << "'s" << std::endl;
-				//add delay of a few seconds in here
-				Obj->searchCards("Player 2", newVal);
+				if (Obj->gameOver != true)
+				{
+
+					card *Player2Root = Obj->getPlayerRoot("Player 2");
+					int newVal = Obj->playerMax("Player 2", Player2Root);
+					std::cout << "Player 2 is going" << std::endl;
+					std::cout << "Player 2 is asking if you have any " << newVal << "'s" << std::endl;
+					//add delay of a few seconds in here
+					Obj->searchCards("Player 2", newVal);
+				}
 			}
-			printMenu();
+			if (Obj->gameOver != true)
+			{
+				printMenu();
+			}
+			else
+			{
+				break;
+			}
 		}
 	}
 
