@@ -200,10 +200,12 @@ void GoFish::searchCards(std::string Player, int val){
 				playerMax("Player 2", Player2Root);
 
 				if (count1 > count2){
-					std::cout << "Player 1 won with " << count1 << " books." << std::endl;
+					std::cout << "You won with " << count1 << " books." << std::endl;
+					std::cout << "Player 2 had " << count2 << " books." << std::endl;
 				}
 				if (count2 > count1){
 					std::cout << "Player 2 won with " << count2 << " books." << std::endl;
+					std::cout << "You only had " << count1 << " books." << std::endl;
 				}
 				gameOver = true;
 			}
@@ -232,10 +234,12 @@ void GoFish::searchCards(std::string Player, int val){
 				playerMax("Player 2", Player2Root);
 
 				if (count1 > count2){
-					std::cout << "Player 1 won with " << count1 << " books." << std::endl;
+					std::cout << "You won with " << count1 << " books." << std::endl;
+					std::cout << "Player 2 had " << count2 << " books." << std::endl;
 				}
 				if (count2 > count1){
 					std::cout << "Player 2 won with " << count2 << " books." << std::endl;
+					std::cout << "You had " << count1 << " books." << std::endl;
 				}
 				gameOver = true;
 			}
@@ -517,12 +521,12 @@ int GoFish::playerMax(std::string player, card *PlayerRoot){
 		removeBook(player, cardName);
 		if (player == "Player 1"){
 			count1++;
-			std::cout << "Player one now has " << count1 << " books!" << std::endl;
+			std::cout << "Player 1 now has " << count1 << " books!" << std::endl;
 
 		}
 		if (player == "Player 2"){
 			count2++;
-			std::cout << "Player two now has " << count2 << " books!" << std::endl;
+			std::cout << "Player 2 now has " << count2 << " books!" << std::endl;
 
 		}
 	}
