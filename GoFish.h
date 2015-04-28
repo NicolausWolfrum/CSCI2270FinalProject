@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+
+//creating a struct "card" which we will use for a linked list of cards, contains card number and suit 
 struct card{
 	int number;
 	std::string suit;
@@ -18,6 +20,8 @@ struct card{
 
 };
 
+
+//GoFish class with main functions as well as setting the roots for each players linked list in private
 class GoFish
 {
 

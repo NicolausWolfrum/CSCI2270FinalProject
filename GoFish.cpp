@@ -23,6 +23,25 @@ GoFish::~GoFish()
 
 /*This function sets the suit and number of the card, and pushes it onto the deck vector.
 This function is called 52 times in order to add all 52 cards of the deck read in from he deck.txt file.*/
+
+/*
+Function prototype:
+void GoFish::addCard(std::string suit, int number)
+
+
+Function description:
+This method adds card structs to a vector data structure
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->addCard("Spades", 1)
+
+
+Precondition: Uses a previouly initialized empty vector
+Post condition: Add's cards to that vector to be used as the deck that will be shuffled, dealt, and drawn from
+*/
+
 void GoFish::addCard(std::string suit, int number)
 {
 	card* temp = new card;
@@ -34,6 +53,28 @@ void GoFish::addCard(std::string suit, int number)
 
 /*This function shuffles the deck of cards using a built in random shuffle function for vectors.
 This ensures that the game will be different every time it is played. It will only be called once.*/
+
+/*
+Function prototype:
+void GoFish::shuffleDeck()
+
+
+Function description:
+This method shuffles the locations of the elements of the vector
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->shuffleDeck();
+
+
+Precondition: Uses a built in random_shuffle
+Post condition: Cards in vector end up in a different order
+*/
+
+
+
+
 void GoFish::shuffleDeck()
 {
 	//random generator
@@ -52,6 +93,26 @@ void GoFish::shuffleDeck()
 /* This function builds two linked lists of cards, one for the player, one for the computers player.
 The linked lists are built in numerical order in order to make searching easier down the road.
 This function will only be called once.*/
+
+/*
+Function prototype:
+void GoFish::dealCards()
+
+
+Function description:
+This method alternates locations of vector dealing 7 into each player's linked list
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->dealCards();
+
+
+Precondition: Starts with a PlayerRoot and alternates integers adding every other card to each player's hand
+Post condition: Cards in vector end up in a player's hand (linked list)
+*/
+
+
 void GoFish::dealCards()
 {
 	for (int i = 0; i < 14; i++)
@@ -93,6 +154,28 @@ void GoFish::dealCards()
 
 /* This function prints out the cards the player currently holds. It can be called multiple times.
 The function overall is pretty self explanatory.*/
+
+
+/*
+Function prototype:
+void GoFish::revealCards()
+
+
+Function description:
+This method show's the user the cards in their hand
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->revealCards();
+
+
+Precondition: n/a
+Post condition: a loop that goes through linked list printing out the properties of each node (card)
+*/
+
+
+
 void GoFish::revealCards()
 {
 	card* temp = Player1Root; //only want to print out Player 1's cards
@@ -121,36 +204,13 @@ void GoFish::revealCards()
 		}
 
 		temp = temp->next;
-	}/*
-	 temp = Player2Root; //only want to print out Player 1's cards
-	 std::cout << "Computer's Cards: " << std::endl;
-	 while (temp != NULL)
-	 {
-	 if (temp->number == 1)
-	 {
-	 std::cout << "Ace of " << temp->suit << std::endl;
-	 }
-	 else if (temp->number == 11)
-	 {
-	 std::cout << "Jack of " << temp->suit << std::endl;
-	 }
-	 else if (temp->number == 12)
-	 {
-	 std::cout << "Queen of " << temp->suit << std::endl;
-	 }
-	 else if (temp->number == 13)
-	 {
-	 std::cout << "King of " << temp->suit << std::endl;
-	 }
-	 else
-	 {
-	 std::cout << temp->number << " of " << temp->suit << std::endl;
-	 }
-
-	 temp = temp->next;
-	 }*/
+	}
 	cardsRevealed = true;
 }
+
+
+//void GoFish::searchCards(std::string Player, int val);
+
 /*This function is to search the opposing player's linked list for the desired value card and, if found, add the found
 cards to the original players linked list. If no cards of the desired value are found in the opposing players linked list,
 the player is required to draw from the pool of cards (automatically add deck.back() to Player 1's linked list).
@@ -172,34 +232,56 @@ the computers turn. We will need to write a function to find which value is repe
 (look through past rec. and assignments for algorithm / function? ).
 Then, we search player 1's linked list for that value and do the same thing as before.
 */
+
+
+
+/*
+Function prototype:
+void GoFish::searchCards(std::string Player, int val);
+
+Function description:
+This function is to search the opposing player's linked list for the desired value card and, if found, add the found
+cards to the original players linked list. If no cards of the desired value are found in the opposing players linked list,
+the player is required to draw from the pool of cards (automatically add deck.back() to Player 1's linked list)
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->searchCards("Player 1", 2);
+
+
+Precondition: player's hands are untouched since shuffle deal and reveal
+Post condition: iterate through linked list searching other player's cards to see if they have the card we ask for , and if it matches it removes from theirs and adds to ours or visa versa
+*/
+
 void GoFish::searchCards(std::string Player, int val){
 
-	std::vector<card*> playerDeckTemp; //vector created
-	bool cardFound1 = false;
+	std::vector<card*> playerDeckTemp; //vector created to store cards
+	bool cardFound1 = false; //creating a bool to keep track of whether or not the card has been found
 	bool cardFound2 = false;
 
-	if (Player == "Player 1"){
-		card *head = Player2Root;
-		while (head != NULL){
-			if (head->number == val){
-				cardFound1 = true;
-				removeCards("Player 2", val);
+	if (Player == "Player 1"){ //check for which player is going-> same as argument passed
+		card *head = Player2Root; //it was player 1 so we start searching through player2's cards
+		while (head != NULL){ //use while loop to go through entire hand
+			if (head->number == val){ //if the sorting is at a node with the card value that we want
+				cardFound1 = true; //set card found equal to true
+				removeCards("Player 2", val); //enter remove card function passing player 2 because we will remove the card from player2's hand
 				std::cout << "Card/cards found." << std::endl;
-				break;
+				break; //break out of while loop 
 			}
-			head = head->next;
+			head = head->next; //used to iterate through whole linked list
 		}
-		if (cardFound1 == false){
+		if (cardFound1 == false){ //card was not found in player 2's hand
 			std::cout << "Player 2 does not have that card. Drawing card from deck" << std::endl;
 			card* temp = deck.back();
 			deck.pop_back();
-			addCardHand("Player 1", temp);
-			std::cout << "You drew a " << temp->number << "!" << std::endl;
-			if (isEmpty()){
-				playerMax("Player 1", Player1Root);
+			addCardHand("Player 1", temp); //adding card to player1's hand from the vector "deck" which is the remaining cards after the dealing
+			std::cout << "You drew a " << temp->number << "!" << std::endl; //tell the user what card they drew
+			if (isEmpty()){ //now need to check if the deck is empty because we removed a card from it
+				playerMax("Player 1", Player1Root); //count's books in this case
 				playerMax("Player 2", Player2Root);
 
-				if (count1 > count2){
+				if (count1 > count2){ //compares book count to determine who won
 					std::cout << "You won with " << count1 << " books." << std::endl;
 					std::cout << "Player 2 had " << count2 << " books." << std::endl;
 				}
@@ -207,13 +289,13 @@ void GoFish::searchCards(std::string Player, int val){
 					std::cout << "Player 2 won with " << count2 << " books." << std::endl;
 					std::cout << "You only had " << count1 << " books." << std::endl;
 				}
-				gameOver = true;
+				gameOver = true; //set gameOver to true
 			}
 		}
 		playerMax("Player 1", Player1Root);
 
 	}
-	else{ //Player = Player 2
+	else{ //Player = Player 2 					SAME CODE AS PLAYER 1 BUT WITH THE PLAYER'S AND SOME FUNCTION ARGUMENTS SWITCHED
 		card *current = Player1Root;
 		while (current != NULL){
 			if (current->number == val){
@@ -224,7 +306,7 @@ void GoFish::searchCards(std::string Player, int val){
 			}
 			current = current->next;
 		}
-		if (cardFound2 == false){
+		if (cardFound2 == false){ //checking that the player2's card hasn't been found
 			card* temp = deck.back();
 			deck.pop_back();
 			addCardHand("Player 2", temp);
@@ -250,6 +332,26 @@ void GoFish::searchCards(std::string Player, int val){
 
 
 }
+
+
+
+/*
+Function prototype:
+void GoFish::removeCards(std::string Player, int val)
+
+Function description:
+This method removes cards from the player passed in and gives them to the other player
+
+
+Example:
+GoFish* Obj = new GoFish();
+Obj->removeCards("Player 1", 5)
+
+Precondition: Each player has a given set of cards
+Post condition: Player selected has essentially removed a card from their linked list and it is added to the other players'
+*/
+
+
 
 void GoFish::removeCards(std::string Player, int val){ //removes cards and gives them to the other player
 
@@ -360,6 +462,22 @@ void GoFish::removeCards(std::string Player, int val){ //removes cards and gives
 
 }
 
+/*
+Function prototype:
+void GoFish::addCardHand(std::string Player, card *tempx)
+
+Function description:
+This method is similar to the addCard above but is specified to add a card in the right order in a players hand. Right order is least to greatest
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->addCardHand("Player 1", tempx);
+
+
+Precondition: pending location in the game, ususally used because of the remove function
+Post condition: assures adding to correct player and starts at root and adds card at correct location in the linked list
+*/
 
 void GoFish::addCardHand(std::string Player, card *tempx){
 	if (Player == "Player 1"){
@@ -419,6 +537,25 @@ void GoFish::addCardHand(std::string Player, card *tempx){
 		}
 	}
 }
+
+
+/*
+Function prototype:
+void GoFish::addCardHand(std::string Player, card *tempx)
+
+Function description:
+This method is inefficient for sure. However this goes through a players list of cards (hand) and stores them to a temp vector to find the card that occurs the most
+Also keeps a count so that we can count books and remove them if there is a book present
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->playerMax("Player 1", Player1Root);
+
+
+Precondition: cards are in hand and none is touched b/c we create new structures here
+Post condition: created vector and int variables to store counts of how many cards occur and print them out
+*/
 
 
 int GoFish::playerMax(std::string player, card *PlayerRoot){
@@ -534,6 +671,21 @@ int GoFish::playerMax(std::string player, card *PlayerRoot){
 	return cardName;
 }
 
+/*
+Function prototype:
+void GoFish::getPlayerRoot(std::string Player)
+
+Function description:
+This is a getter function for the root of each player's linked list (hand of cards)
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->getPlayerRoot("Player 1");
+
+
+Precondition: playerRoots are private in the class
+Post condition: converts the private nodes to "root" which can then be used in public functions
+*/
 
 
 card *GoFish::getPlayerRoot(std::string player){
@@ -547,6 +699,23 @@ card *GoFish::getPlayerRoot(std::string player){
 	return root;
 }
 
+/*
+Function prototype:
+void GoFish::isEmpty()
+
+Function description:
+Checks if deck is empty and if it is, returns true so that we know when the game is over.
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->playerMax("Player 1", Player1Root);
+
+
+Precondition: deck has an empty function
+Post condition: check to see if the deck has 0 elements and if it does return true
+*/
+
 
 bool GoFish::isEmpty(){
 	if (deck.empty()){
@@ -554,6 +723,27 @@ bool GoFish::isEmpty(){
 		return true;
 	}
 }
+
+
+
+/*
+Function prototype:
+void GoFish::removeBook(std::string Player, int val)
+
+Function description:
+This method is checks to see the count of cards and if there are any four cards of the same number (books) and removing them and adding to a book count
+
+
+Example:
+GoFish *Obj = new GoFish();
+Obj->removeBook("Player 1", 1);
+
+
+Precondition: count is set, and vector is full
+Post condition: if we find four, we remove from players hand and add to count for # of books
+*/
+
+
 void GoFish::removeBook(std::string Player, int val)
 {
 	if (Player == "Player 1"){ //removing from player 1 and adding to player 2
