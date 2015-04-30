@@ -145,7 +145,6 @@ void inputDeck()
 	std::string split = ",";
 	if (myFile.is_open())
 	{
-		int j = 0;
 		while (getline(myFile, line))
 		{
 			std::stringstream stream(line);
