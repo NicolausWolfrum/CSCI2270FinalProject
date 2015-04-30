@@ -1,7 +1,8 @@
 # CSCI2270FinalProject
-Nicolaus Wolfrum & Elliot Benson's CSCI 2270 Final Project
+### Nicolaus Wolfrum & Elliot Benson's CSCI 2270 Final Project
 
-Project Summary: 
+#### Project Summary: 
+	
 	Our project was to write a program for a "Go Fish" game. Using an assortment of data structures
 	and other C++ methods that we learned over the course of the semester, our program reads in a pre-created
 	file with a standard deck of cards excluding jokers. The program then "shuffles" the cards using an array
@@ -14,7 +15,8 @@ Project Summary:
 	based on who has the most sets of four. The program will use an assortment of arrays, linked lists, vectors, 
 	and structs to achieve this.
 
-How is Go Fish Played?
+#### How is Go Fish Played?
+	
 	Cards must be shuffled before they are dealt to the players.
 	Since we are only going to be using two players, each player will be dealt 7 cards.
 	Dealer deals cards clockwise, face down (a function to reveal cards). Remainder of 
@@ -32,40 +34,46 @@ How is Go Fish Played?
 	If a catch is not made, the turn goes to the player to the left.
 	
 
-How to Run:
-	Download the "GoFish.zip" file and extract the file. Next, open the extracted file "GoFish". Inside you will see a "GoFish.exe" application.
-	Double click "GoFish.exe" to run the program. You will be prompted with a menu with 5 options. 
-	First, shuffle the cards by typing a "1" and hitting "enter". 
-	Next, deal the cards by typing a "2" and hitting "enter". 
-	Next, reveal your cards by typing a "3" and hitting "enter."
-	Next, go fishing for a card by typing a "4" and hitting "enter."
+#### How to Run:
+	
+	Download the `GoFish.zip` file and extract the file. Next, open the extracted file `GoFish`. Inside you will see a `GoFish.exe` application.
+	Double click `GoFish.exe` to run the program. You will be prompted with a menu with 5 options. 
+	First, shuffle the cards by typing a `1` and hitting `enter`. 
+	Next, deal the cards by typing a `2` and hitting `enter`. 
+	Next, reveal your cards by typing a `3` and hitting `enter`.
+	Next, go fishing for a card by typing a `4` and hitting `enter`.
 	Follow the basic rules until the game is over. When the game is over you will be informed that it is over. 
-	At this point, type "5" and hit "enter" to quit the game.
+	At this point, type `5` and hit `enter` to quit the game.
 
-Dependencies: 
+#### Dependencies: 
+	
 	Uses basic/standard c++ libraries. No third party content needed.
 
-System Requirements:
-	 For starters, the program will run on just Windows operating systems, will improve to Linux, but won’t likely go to Mac. (This will be updated with a final 		decision)
+#### System Requirements:
+	 
+	For starters, the program will run on just Windows operating systems, will improve to Linux, but won’t likely go to Mac. (This will be updated with a final 		decision)
 
-Group Members: 
+#### Group Members: 
+	
 	Elliot Benson & Nic Wolfrum
 
-Contributors:
-	 N/A
+#### Contributors:
+	 
+	N/A
 
-Open Issues/Bugs:
+#### Open Issues/Bugs:
+	
 	At this point, there are no known issues or bugs. 
 	Ideas for expansion:
-		-Possibly alter the program to be able to have multiple non-computer players, or just be player vs. player.
-		-Have an option to "Play Again" after the game is over.
-		-Create a better algoritm for what card the computer is searching for:
-			Currently, the computer searches for whatever card it has most of (so if its not found, it keeps searching
+		- Possibly alter the program to be able to have multiple non-computer players, or just be player vs. player.
+		- Have an option to "Play Again" after the game is over.
+		- Create a better algoritm for what card the computer is searching for:
+			* Currently, the computer searches for whatever card it has most of (so if its not found, it keeps searching
 			the same card every turn, which is kind of boring. Maybe make it so every other turn it searches for the highest card,
 			and the others it just searches for a random card in the list.)
-		-Make a time delay between the players going. Currently it prints out everything very quickly, but with a short delay
+		- Make a time delay between the players going. Currently it prints out everything very quickly, but with a short delay
 		it could be easier to read.
-		-Make it check if the input for what the player is searching for is a card number... currently if you search for anything,
+		- Make it check if the input for what the player is searching for is a card number... currently if you search for anything,
 		(ex. "This is not a card number"), it will just say "card not found" and draw from the pool.
 		
 		
