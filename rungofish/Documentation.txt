@@ -1,0 +1,89 @@
+//Nicolaus Wolfrum & Elliot Benson
+//CSCI 2270 Final Project Function Documentation
+Public Methods:
+
+	Function Prototype:
+		void addCard(std::string, int);
+	Function Description:
+		This is the function that is called to add cards from the text file to the card vector.
+		It expects a string (the suit name) and an integer (the card number).
+		These are read in from the file. In the function, it sets a card* variable with these parameters.
+		Next, it pushes this card* on to the card vector.
+		It returns void.
+	Function Prototype:
+		void shuffleDeck();
+	Function Description:
+		This function is to shuffle the vector of cards. It expects no parameters. Originally, the deck vector is in order, but needs shuffled. 
+		The function uses the "random_shuffle()" function to shuffle the vector. Then it sets a boolean "cardsShuffled" = true.
+		This is to ensure that you have shuffled the cards before doing anything else.
+		It returns void, but the deck is in completely random order each time now.
+	Function Prototype:
+		void dealCards();
+	Function Description:
+		This function is to deal the cards to each player. It expects no parameters. This function loops fourteen times. Each time,
+		it sets a temporary card* equal to the card* on the back of the vector and pops it off the back. Every other card is then "dealt"
+		to each individual player, by adding it to the players linked list. It adds the cards in order numerically so the cards are organized.
+		Before this function, the player's linked lists are null, but after they are full with seven cards each. It also sets a 
+		boolean "cardsDealt" = true. This is to ensure that you have dealt the cards before you do any of the next steps.
+		It returns void.
+	Function Prototype:
+		void revealCards();
+	Function Description:
+		This is a function to reveal the players cards. It takes no parameters. The function simply loops through Player 1's linked
+		list of cards,prints out the number and the suit for each card. It then sets the boolean "cardsRevealed" = true, 
+		which is used to check if the player has revealed their cards before trying to go fish. 
+		It return void and alters the linked list in no way.
+	Function Prototype:
+		void searchCards(std::string Player, int val);
+	Function Description:
+		This function takes a string (the current player) and an integer (the value the player is searching for). The function
+		takes these parameters, and searches the opposite players linked list for the paticular value of card. If the card value 
+		is found, it runs the "removeCards" function passing in the opposite player and the value. It then sets the boolean
+		"cardFound1 (or cardFound2 for player 2)" = true. If the value is not found, it prints out that the card was unfound and
+		that it is drawing a card from the top of the deck. In this situation, a temp variable is set to equal deck.back(), and
+		popped from the deck vector. It is then added to the paticular players linked list. Additionally, it runs the playerMax
+		function passing in the player and the the players root, and runs the isEmpty() function to check if the deck is empty.
+	Function Prototype:
+		void removeCards(std::string Player, int val);
+	Function Description:
+		This function passes in a string (the player its removing cards from) and an integer(the value of the card to be removed).
+		If this function is called, the function loops through that players linked list, searching for any card with that value.
+		If the value is found a temporary card* variable is made with the same values as the found card. It is then passed into
+		the addCardHand function with the opposite player as the first parameter. Then, that found card is deleted.
+		It will delete all values of that card in the list and add all of the cards to the other player's list. 
+		The function returns void, although it ultimately alters both player's lists of cars.
+	Function Prototype: 
+		void addCardHand(std::string Player, card *tempx);
+	Function Description:
+		This function passes in a string (The player it is adding a card to) and a card* (the card to be added.) It loops through
+		the player's linked list of cards, adding the temp card to the linked list in the correct numerical order.
+		This function alter's the paticular players linked list, but returns void.
+	Function Prototype:
+		void removeBook(std::string Player, int val);
+	Function Description:
+		This function passes in a string (the player to remove a book from) and an integer (the value of the book to be removed). 
+		The function loops through that paticular players linked list, removing all cards that match that value. (This function should
+		only ever have been called if four cards of that value exist, and all four should be removed, hence a "book" being found.)
+		When the cards are deleted, it will add one to the counter of that paticular player, counting how many books they have. The player
+		with the most books at the end of the game wins. It only alters that paticular players linked list and the count integer.
+		It returns void. 
+	Function Prototype:
+		int playerMax(std::string player, card* );
+	Function Description:
+		This function passes in a string (the player who it is searching) and a card* (that player's head card). It then searches that paticular players linked list for all values
+		from 1 to 13. Each of these values has a counter. The counters are then pushed into a vector, and max_element is used to find
+		which element is biggest. If an element occurs four times, the removeBook() function is called passing in that player and that
+		elements value. This removes that book from the player's cards. This function is also used for the computer to know which card it is
+		searching for, because as of now the computer always searches for whatever value it has the most cards of.
+		The function returns void.
+	Function Prototype:
+		card *getPlayerRoot(std::string player);
+	Function Description:
+		This is a getter function. It takes a string (the player) as a parameter. It then returns that player's head card of their linked list of cards. 
+	Function Prototype:
+		bool isEmpty();
+	Function Description:
+		This function takes in no parameters. It is a function that checks if the deck vector is empty. If the vector is empty, it returns
+		true, and if not, it returns false.
+		If the deck is empty, it also prints out "Game Over" and sets the boolean "gameOver" = true. The program will then print out
+		who won, and prompt you to hit 5 to quit.
