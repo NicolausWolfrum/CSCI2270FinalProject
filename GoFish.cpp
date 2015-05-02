@@ -645,7 +645,7 @@ int GoFish::playerMax(std::string player, card *PlayerRoot){
 	int maxElement = *std::max_element(largest.begin(), largest.end());
 
 	int cardName = 0;
-	for (int i = 0; i < largest.size(); i++){
+	for (unsigned int i = 0; i < largest.size(); i++){
 		if (largest[i] == maxElement){
 			cardName = i + 1; //cardName will still come out as the number on the card
 			//std::cout << "There are " << maxElement << " " << cardName << "'s" << std::endl;
@@ -722,6 +722,7 @@ bool GoFish::isEmpty(){
 		std::cout << "Game over" << std::endl;
 		return true;
 	}
+	return false;
 }
 
 
