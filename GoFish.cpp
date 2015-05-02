@@ -562,13 +562,7 @@ int GoFish::playerMax(std::string player, card *PlayerRoot){
 
 	card *head = new card;
 
-
-	if (player == "Player 1"){
-		head = Player1Root;
-	}
-	if (player == "Player 2"){
-		head = Player2Root;
-	}
+	head = PlayerRoot;
 
 	int one = 0;
 	int two = 0;
@@ -584,7 +578,7 @@ int GoFish::playerMax(std::string player, card *PlayerRoot){
 	int twelve = 0;
 	int thirteen = 0;
 
-	while (head->next != NULL){
+	while (head != NULL){
 		if (head->number == 1){
 			one++;
 		}
@@ -646,11 +640,13 @@ int GoFish::playerMax(std::string player, card *PlayerRoot){
 
 	int cardName = 0;
 	for (int i = 0; i < largest.size(); i++){
+
 		if (largest[i] == maxElement){
 			cardName = i + 1; //cardName will still come out as the number on the card
 			//std::cout << "There are " << maxElement << " " << cardName << "'s" << std::endl;
 			//maxElement is the number of times a card with ID cardName occurred
 			//cardName is card ID
+
 		}
 	}
 
@@ -722,6 +718,7 @@ bool GoFish::isEmpty(){
 		std::cout << "Game over" << std::endl;
 		return true;
 	}
+	return false;
 }
 
 
@@ -754,7 +751,7 @@ void GoFish::removeBook(std::string Player, int val)
 
 					Player1Root = current->next;
 					current = current->next;
-					current->next->prev = NULL;
+					current->prev = NULL;
 				}
 				else if (current->next == NULL){ //tail is value to delete
 
@@ -786,7 +783,7 @@ void GoFish::removeBook(std::string Player, int val)
 					Player2Root = current->next;
 					current = current->next;
 
-					current->next->prev = NULL;
+					current->prev = NULL;
 				}
 				else if (current->next == NULL){ //tail is value to delete
 
@@ -813,6 +810,23 @@ void GoFish::removeBook(std::string Player, int val)
 	}
 
 }
+/*
+Function prototype:
+void GoFish::inPlayer1Hand(int option)
+
+Function description:
+Method checks to see if the card being asked for is in the players hand
+
+Example:
+GoFish *Obj = new GoFish();
+getline(cin, search);
+bool found = Obj->inPlayer1Hand(atoi(search.c_str()));
+
+
+Precondition: the integer being searched for is set, bool found = unset.
+Post condition: if card is found, found = true. else = false.
+*/
+
 
 bool GoFish::inPlayer1Hand(int option)
 {

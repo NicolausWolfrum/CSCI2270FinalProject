@@ -97,7 +97,8 @@ int main(){
 				}
 				else
 				{
-					std::cout << "Enter 1 for Ace, 2 for 2, 3 for 3,  ... 11 for Jack, 12 for Queen, and 13 for King" << std::endl;
+					std::cout << "Enter 1 for Ace, 2 for 2, 3 for 3,  ... 11 for Jack, " << std::endl;
+					std::cout << "12 for Queen, and 13 for King." << std::endl;
 					std::cout << "What are you fishing for? " << std::endl;
 					getline(std::cin, temp);
 					getline(std::cin, search);
@@ -109,7 +110,7 @@ int main(){
 						{
 
 							card *Player2Root = Obj->getPlayerRoot("Player 2");
-							int newVal = Obj->playerMax("Player 2");
+							int newVal = Obj->playerMax("Player 2", Player2Root);
 							std::cout << "Player 2 is going" << std::endl;
 							std::cout << "Player 2 is asking if you have any " << newVal << "'s" << std::endl;
 							//add delay of a few seconds in here
@@ -153,7 +154,6 @@ void inputDeck()
 	std::string split = ",";
 	if (myFile.is_open())
 	{
-		int j = 0;
 		while (getline(myFile, line))
 		{
 			std::stringstream stream(line);

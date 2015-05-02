@@ -36,7 +36,7 @@ public:
 	void removeCards(std::string Player, int val);
 	void addCardHand(std::string Player, card *tempx);
 	void removeBook(std::string Player, int val);
-	int playerMax(std::string player, card *player2Root);
+	int playerMax(std::string player, card* playerRoot);
 	card *getPlayerRoot(std::string player);
 	bool isEmpty();
 	bool inPlayer1Hand(int);
