@@ -814,3 +814,17 @@ void GoFish::removeBook(std::string Player, int val)
 
 }
 
+bool GoFish::inPlayer1Hand(int option)
+{
+	card* current = Player1Root;
+	bool found = false;
+	while (current != NULL)
+	{
+		if (current->number == option)
+		{
+			return true;
+		}
+		current = current->next;
+	}
+	return false;
+}

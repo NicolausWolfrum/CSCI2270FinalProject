@@ -101,16 +101,24 @@ int main(){
 					std::cout << "What are you fishing for? " << std::endl;
 					getline(std::cin, temp);
 					getline(std::cin, search);
-					Obj->searchCards("Player 1", atoi(search.c_str()));
-					if (Obj->gameOver != true)
+					bool found = Obj->inPlayer1Hand(atoi(search.c_str()));
+					if (found == true)
 					{
+						Obj->searchCards("Player 1", atoi(search.c_str()));
+						if (Obj->gameOver != true)
+						{
 
-						card *Player2Root = Obj->getPlayerRoot("Player 2");
-						int newVal = Obj->playerMax("Player 2", Player2Root);
-						std::cout << "Player 2 is going" << std::endl;
-						std::cout << "Player 2 is asking if you have any " << newVal << "'s" << std::endl;
-						//add delay of a few seconds in here
-						Obj->searchCards("Player 2", newVal);
+							card *Player2Root = Obj->getPlayerRoot("Player 2");
+							int newVal = Obj->playerMax("Player 2");
+							std::cout << "Player 2 is going" << std::endl;
+							std::cout << "Player 2 is asking if you have any " << newVal << "'s" << std::endl;
+							//add delay of a few seconds in here
+							Obj->searchCards("Player 2", newVal);
+						}
+					}
+					else
+					{
+						std::cout << "You must have a card to fish for that number." << std::endl;
 					}
 				}
 				printMenu();

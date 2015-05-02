@@ -39,6 +39,7 @@ public:
 	int playerMax(std::string player, card *player2Root);
 	card *getPlayerRoot(std::string player);
 	bool isEmpty();
+	bool inPlayer1Hand(int);
 	bool cardsShuffled = false;
 	bool cardsDealt = false;
 	bool cardsRevealed = false;
